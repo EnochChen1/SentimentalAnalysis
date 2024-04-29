@@ -14,7 +14,6 @@ import {
   Card,
 } from "@aws-amplify/ui-react";
 
-Amplify.configure(aws_exports);
 
 
 function App({signOut}) {
