@@ -17,7 +17,9 @@ import {
   createNote as createNoteMutation,
   deleteNote as deleteNoteMutation,
 } from "./graphql/mutations";
-import { API, Storage } from "aws-amplify";
+import { Storage } from "aws-amplify";
+
+const client = generateClient();
 
 const App = ({ signOut }) => {
   const [notes, setNotes] = useState([]);
