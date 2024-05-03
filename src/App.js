@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import logo from './logo.svg';
 import './App.css';
 import "@aws-amplify/ui-react/styles.css"
@@ -14,11 +14,28 @@ import {
   Card,
 } from "@aws-amplify/ui-react";
 
+const [sentence, setSentence] = useState(null);
+const [sentiment, setSentiment] = useState(null);
+
 function handleSubmit(e) {
   e.preventDefault();
-  const form = e.target;
-  
+  setSentence(e.currentTarget.sentence.value);
+
+  const api = "https://eglsgolhn6.execute-api.us-east-1.amazonaws.com/dev/sentiment_analysis";
+
+  React.useEffect(() => {
+    $.get(api, {
+      sentence: sentence
+    },
+    function (sentiment, status) {
+      setSentiment = sentiment;
+      console.log(status+" "+sentiment);
+    });
+    }, []);
 }
+  
+  
+
 
 
 function App({signOut}) {
